@@ -1,0 +1,11 @@
+
+.idea/
+venv
+
+*.pyc
+
+tutorial/Books
+
+*.json
+
+tutorial/Resources
