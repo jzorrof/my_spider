@@ -6,8 +6,10 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import codecs
 import json
+
 from scrapy import signals
 from scrapy.xlib.pydispatch import dispatcher
+
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 
@@ -17,9 +19,13 @@ class TutorialPipeline(object):
         self.file = codecs.open('qiche.json', 'wb', encoding='utf-8')
 
     def process_item(self, item, spider):
-        line = json.dumps(dict(item), ensure_ascii=False) + '\n'
-        self.file.write(line)
-        return item
+        if item['desc']:
+            line = json.dumps(dict(item), ensure_ascii=False) + '\n'
+            self.file.write(line)
+            return item
+        else:
+            pass
+            #raise DropItem("Missing price in %s" % item)
 
     def spider_closed(self, spider):
     	print('closing~~~~~~~~')

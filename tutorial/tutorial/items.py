@@ -15,3 +15,8 @@ class DmozItem(scrapy.Item):
     link = scrapy.Field()
     img = scrapy.Field()
     desc = scrapy.Field()
+
+class QicheItem(scrapy.Item):
+    link = scrapy.Field()
+    img = scrapy.Field()
+    desc = scrapy.Field()
